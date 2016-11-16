@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<script
+	src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script type="text/javascript" src="scripts.js"></script>
+<title>Cars For Sale</title>
+</head>
+<body>
+	<br>
+	
+	<form action="http://localhost:8080/rst2/home.html">
+    	<input type="submit" value="Home" />
+	</form>
+	<br>
+	<form action="http://localhost:8080/rst2/GetCars.html">
+    	<input type="submit" value="Show Cars" />
+	</form>
+	
+	<br>
+	
+	<form action="NewCar.html" id="addCar" method="POST">
+		Car Brand: <input type="text" name="brand" id="carBrand" required><br><br>
+		Car Model: <input type="text" name="model" id="carModel" required><br><br>
+		Car Year Of Manufacture: <input type="number" id="carYear" name="yearOfManufacture" min="1980" max="2016" required><br><br>
+		Car Horse Power: <input type="number" name="horsePower" id="carPower" required><br><br>
+		Car Transmission: 
+		<select name="transmission" id="carTransmission" required>
+		  <option value="select">----> Please select <---- </option>
+		  <option value="Automatic">Automatic</option>
+		  <option value="Manual">Manual</option>
+		</select><br><br>
+		Car Doors: <input type="number" name="doors" min="2" max="7" id="carDoors" required><br><br>
+		Car Fuel: 
+		<select name="carFuel" id="fuel" required>
+		  <option value="select">----> Please select <---- </option>
+		  <option value="Petrol">Petrol</option>
+		  <option value="Diesel">Diesel</option>
+		  <option value="Petrol/Gas">Petrol/Gas</option>
+		  <option value="Hybrid">Hybrid</option>
+		  <option value="Electricity">Electricity</option>
+		</select><br><br>
+		Car Region: <input type="text" name="region" id="carRegion" required><br><br>
+		Car Condition:
+		<select name="carCondition" id="condition" required>
+			<option value="select">----> Please select <---- </option>
+		  	<option value="New">New</option>
+		  	<option value="Secondhand">Secondhand</option>
+		</select><br><br>
+		Car Price: <input type="number" name="price" id="carPrice" required><br><br>
+		
+		<input type="submit" name="SubmitCar" value="Submit" id="SubmitButton">
+	</form>
+	
+	<script>
+	</script>
+</body>
+</html>
