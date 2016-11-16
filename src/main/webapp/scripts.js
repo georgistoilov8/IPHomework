@@ -52,19 +52,18 @@ $(document).ready(function() {
 		var condition = $("#condition option:selected").val();
 		var price = $("#carPrice").val();
 		alert(brand+model+year+power+transmission+doors+fuel+region+condition+price);
-		//alert(transmission);
 		var jsonObj = '{\n' + ' "brand" : "' + brand + '",\n "model" : "' +model+'",\n "year" : "'+year+'",\n "power" : "'+power+
 		'",\n "transmission" : "'+transmission+'",\n "doors" : "'+ doors+'",\n "fuel" : "'+fuel+'",\n "region" : "'+region+
 		'",\n "condition" : "'+condition+'",\n "price" : "'+price+'"\n}';
 		//alert(jsonObj);
-		var j = JSON.stringify($("#addCar").serializeArray());
+		//var j = JSON.stringify($("#addCar").serializeArray());
 		//var jsonData = JSON.parse(jsonObj);
-		var sendInfo = {
-		           brand: brand,
-		           model: model,
-		           year: year
-		       };
-		alert(j);
+		//var sendInfo = {
+		  //         brand: brand,
+		    //       model: model,
+		      //     year: year
+		       //};
+		//alert(j);
 		$.ajax({
 			type:"POST",
 			url:"http://localhost:8080/rst2/api/cars/createcar",
