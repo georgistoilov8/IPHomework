@@ -30,12 +30,7 @@ $(document).ready(function() {
 });
 $(document).ready(function() {
 	$("#SubmitButton").click(function () {
-		//var json;
-		//$(function(e){
-			//json = $("#addCar").serializeObject();
-		//});
-		var formdata = $("#addCar").serializeObject;
-		alert(formdata);
+		//var formdata = $("#addCar").serializeObject;
 		var brand = $("#carBrand").val();
 		var model = $("#carModel").val();
 		var year = $("#carYear").val();
@@ -51,7 +46,7 @@ $(document).ready(function() {
 		var jsonObj = '{\n' + ' "brand" : "' + brand + '",\n "model" : "' +model+'",\n "year" : "'+year+'",\n "power" : "'+power+
 		'",\n "transmission" : "'+transmission+'",\n "doors" : "'+ doors+'",\n "fuel" : "'+fuel+'",\n "region" : "'+region+
 		'",\n "condition" : "'+condition+'",\n "price" : "'+price+'"\n}';
-		alert(jsonObj);
+		//alert(jsonObj);
 		var j = JSON.stringify($("#addCar").serializeArray());
 		//var jsonData = JSON.parse(jsonObj);
 		var sendInfo = {
@@ -59,8 +54,6 @@ $(document).ready(function() {
 		           model: model,
 		           year: year
 		       };
-		//alert(jsonData);
-		//alert("2");
 		alert(j);
 		$.ajax({
 			type:"POST",
@@ -68,7 +61,7 @@ $(document).ready(function() {
 			data:jsonObj,
 			contentType: "application/json",
 			success: function(data) {
-				alert("KORRRR");
+				alert("Success");
 			},
 			error: function(xhr, status, error) {
 	            console.log(xhr);

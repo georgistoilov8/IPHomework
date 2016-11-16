@@ -18,9 +18,6 @@ public class CarService {
 	private List<Car> carList = new ArrayList<>();
 
 	public CarService() {
-		//userList.add(new User(1, "George"));
-		//userList.add(new User(2, "John"));
-		//userList.add(new User(3, "Ivan"));
 		carList.add(new Car(1, "Ferrari", "F12", 2012, 350, "Automatic", 4, "petrol", "Sofia", "new", 100000));
 		carList.add(new Car(2, "Opel", "Astra", 2001, 80, "Manual", 4, "petrol", "Sofia", "secondhand", 2500));
 	} 
