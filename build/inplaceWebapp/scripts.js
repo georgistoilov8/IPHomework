@@ -1,5 +1,5 @@
 $(document).ready(function() {
-	$("#showCars").click(function (){
+	$("#showCars").click(function (){ 
 		$.get({
 			url: "http://localhost:8080/rst2/api/cars/getcars",
 			dataType: "json",
@@ -7,12 +7,25 @@ $(document).ready(function() {
 				console.log(data);
 				$.each(data, function(index){
 					var tr = $('<tr>');
-					tr.append("<td> " + data[index].price + "</td>");
-					$("#usersTable").append(tr);
+					tr.append(
+							"<td> " + 
+								"<th>" + data[index].carBrand + "</th>" +
+								"<th>" + data[index].carModel + "</th>" +
+								"<th>" + data[index].carYearOfManufacture + "</th>" +
+								"<th>" + data[index].carHorsePower + "</th>" +
+								"<th>" + data[index].carTransmission + "</th>" +
+								"<th>" + data[index].carDoors + "</th>" +
+								"<th>" + data[index].carFuel + "</th>" +
+								"<th>" + data[index].carRegion + "</th>" +
+								"<th>" + data[index].carCondition + "</th>" +
+								"<th>" + data[index].carPrice + "</th>" + 
+							"</td>");
+					$("#carList").append(tr);
 				});
 			}
 
 		});
+		document.getElementById("showCars").disabled = true;
 	});
 });
 $(document).ready(function() {

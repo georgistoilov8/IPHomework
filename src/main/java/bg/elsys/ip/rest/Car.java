@@ -31,8 +31,19 @@ public class Car {
 	@ApiModelProperty(value = "This will show the car price in leva.", example = "400000")
 	private int price;
 	
-	public Car () {
-	
+	public Car (int id, String brand, String model, int year, int power, String transmission, 
+			int doors, String fuel, String region, String condition, int price) {
+		this.id = id;
+		this.brand = brand;
+		this.model = model;
+		this.yearOfManufacture = year;
+		this.horsePower = power;
+		this.transmission = transmission;
+		this.doors = doors;
+		this.fuel = fuel;
+		this.carRegion = region;
+		this.condition = condition;
+		this.price = price;
 	}
 	
 	public Car(int id) {
