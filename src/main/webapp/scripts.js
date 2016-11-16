@@ -6,7 +6,7 @@ $(document).ready(function() {
 			success: function(data){
 				console.log(data);
 				$.each(data, function(index){
-					var tr = $('<tr>');
+					var tr = $('<tr id="cars">');
 					tr.append(
 							"<td> " + 
 								"<th>" + data[index].carBrand + "</th>" +
@@ -26,8 +26,18 @@ $(document).ready(function() {
 
 		});
 		document.getElementById("showCars").disabled = true;
+		document.getElementById("hideCars").disabled = false;
 	});
 });
+
+$(document).ready(function() {
+	$("#hideCars").click(function (){
+		$("#carList #cars").remove();
+		document.getElementById("showCars").disabled = false;
+		document.getElementById("hideCars").disabled = true;
+	});
+});
+
 $(document).ready(function() {
 	$("#SubmitButton").click(function () {
 		//var formdata = $("#addCar").serializeObject;
