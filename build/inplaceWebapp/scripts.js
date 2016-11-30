@@ -1,46 +1,113 @@
-$(document).ready(function() {
-	$("#showCars").click(function (){ 
+var cars = [];
+var uniqueCarBrands = [];
+$(document).ready(function() {	
+	$("#b").focus(function() {
 		$.get({
-			url: "http://localhost:8080/rst2/api/cars/getcars",
+			url: "http://localhost:8080/rst2/api/cars?page=0&perPage=0&filterByBrand=&filterByModel=&filterByYearOfManufacture=&filterByHorsePower=&filterByTransmission=&filterByDoors=&filterByFuel=&filterByRegion=&filterByCondition=&filterByPrice=",
 			dataType: "json",
 			success: function(data){
-				console.log(data);
-				$.each(data, function(index){
-					var tr = $('<tr id="cars">');
-					tr.append(
-							"<td> " + 
-								"<th>" + data[index].carBrand + "</th>" +
-								"<th>" + data[index].carModel + "</th>" +
-								"<th>" + data[index].carYearOfManufacture + "</th>" +
-								"<th>" + data[index].carHorsePower + "</th>" +
-								"<th>" + data[index].carTransmission + "</th>" +
-								"<th>" + data[index].carDoors + "</th>" +
-								"<th>" + data[index].carFuel + "</th>" +
-								"<th>" + data[index].carRegion + "</th>" +
-								"<th>" + data[index].carCondition + "</th>" +
-								"<th>" + data[index].carPrice + "</th>" + 
-							"</td>");
-					$("#carList").append(tr);
+				var jsonData = JSON.stringify(data);
+				$.each(data["data"], function(index){
+					cars[index] = data["data"][index]["carBrand"];
 				});
+				$.each(cars, function(i, el){
+				    if($.inArray(el, uniqueCarBrands) === -1) uniqueCarBrands.push(el);
+				});
+				console.log(uniqueCarBrands);
+			},
+			error: function(){
+				alert("Error");
 			}
-
 		});
-		document.getElementById("showCars").disabled = true;
-		document.getElementById("hideCars").disabled = false;
+		
+		$("#b").autocomplete({
+	    	source: uniqueCarBrands
+	    });
+	});
+});
+
+$( document ).on("click", ".showCars", function() {
+	$("#carList #cars").remove();
+	$("#pagination #pages").remove();
+	var page = 0;
+	if(this.id != ""){
+		page = parseInt(this.id);
+	}
+	var perPage = $("#perPage").val();
+	if(perPage == 0 || perPage == ""){
+		alert("Please input valid Cars per Page value");
+		return;
+	}
+	var filterByBrand = $("#b").val();
+	var filterByModel = $("#m").val();
+	var filterByYear = 0;
+	if($("#y").val() != ""){
+		filterByYear = $("#y").val();
+	}
+	var filterByHorsePower = 0;
+	if($("#hp").val() != ""){
+		filterByHorsePower = $("#hp").val();
+	}
+	var filterByTransmission = $("#t option:selected").val();
+	var filterByDoors = 0;
+	if($("#d").val() != ""){
+		filterByDoors = $("#d").val()
+	}
+	var filterByFuel = $("#f option:selected").val();
+	var filterByRegion = $("#r").val();
+	var filterByCondition = $("#c option:selected").val();
+	var filterByPrice = 0;
+	if($("#pr").val() != ""){
+		filterByPrice = $("#pr").val()
+	}
+	$.get({
+		url: "http://localhost:8080/rst2/api/cars?page="+page+"&perPage="+perPage+"&filterByBrand="+filterByBrand
+		+"&filterByModel="+filterByModel+"&filterByYearOfManufacture="+filterByYear+"&filterByHorsePower="+filterByHorsePower
+		+"&filterByTransmission="+filterByTransmission+"&filterByDoors="+filterByDoors+"&filterByFuel="+filterByFuel
+		+"&filterByRegion="+filterByRegion+"&filterByCondition="+filterByCondition+"&filterByPrice="+filterByPrice,
+		dataType: "json",
+		success: function(data){
+			var jsonData = JSON.stringify(data);
+			$.each(data["data"], function(index){
+				var tr = $('<tr id="cars">');
+				tr.append(
+						"<td> " + 
+							"<th>" + data["data"][index]["carBrand"] + "</th>" +
+							"<th>" + data["data"][index]["carModel"] + "</th>" +
+							"<th>" + data["data"][index]["carYearOfManufacture"] + "</th>" +
+							"<th>" + data["data"][index]["carHorsePower"] + "</th>" +
+							"<th>" + data["data"][index]["carTransmission"] + "</th>" +
+							"<th>" + data["data"][index]["carDoors"] + "</th>" +
+							"<th>" + data["data"][index]["carFuel"] + "</th>" +
+							"<th>" + data["data"][index]["carRegion"] + "</th>" +
+							"<th>" + data["data"][index]["carCondition"] + "</th>" +
+							"<th>" + data["data"][index]["carPrice"] + " $</th>" + 
+						"</td>");
+				$("#carList").append(tr);
+			});
+			var pagination = $('<div id="pages">');
+			for(var i = 0; i < data["totalPages"]; i++){
+				pagination.append('<button class="showCars" id="'+i+'">' + i + '</button>');
+			}
+			pagination.append('</div>');
+			$("#pagination").append(pagination);
+		},
+		error: function(){
+			alert("Error");
+		} 
+
 	});
 });
 
 $(document).ready(function() {
 	$("#hideCars").click(function (){
 		$("#carList #cars").remove();
-		document.getElementById("showCars").disabled = false;
-		document.getElementById("hideCars").disabled = true;
+		$("#pagination #pages").remove();
 	});
 });
 
 $(document).ready(function() {
 	$("#SubmitButton").click(function () {
-		//var formdata = $("#addCar").serializeObject;
 		var brand = $("#carBrand").val();
 		var model = $("#carModel").val();
 		var year = $("#carYear").val();
@@ -51,38 +118,25 @@ $(document).ready(function() {
 		var region = $("#carRegion").val();
 		var condition = $("#condition option:selected").val();
 		var price = $("#carPrice").val();
-		alert(brand+model+year+power+transmission+doors+fuel+region+condition+price);
-		//alert(transmission);
-		var jsonObj = '{\n' + ' "brand" : "' + brand + '",\n "model" : "' +model+'",\n "year" : "'+year+'",\n "power" : "'+power+
-		'",\n "transmission" : "'+transmission+'",\n "doors" : "'+ doors+'",\n "fuel" : "'+fuel+'",\n "region" : "'+region+
-		'",\n "condition" : "'+condition+'",\n "price" : "'+price+'"\n}';
-		//alert(jsonObj);
-		var j = JSON.stringify($("#addCar").serializeArray());
-		//var jsonData = JSON.parse(jsonObj);
-		var sendInfo = {
-		           brand: brand,
-		           model: model,
-		           year: year
-		       };
-		alert(j);
-		$.ajax({
-			type:"POST",
-			url:"http://localhost:8080/rst2/api/cars/createcar",
-			data:jsonObj,
+		var jsonObj = '{\n' + 
+		' "carBrand" : "' + brand + 
+		'",\n "carModel" : "' + model + 
+		'",\n "carYearOfManufacture" : "' + year + 
+		'",\n "carHorsePower" : "' + power +
+		'",\n "carTransmission" : "' + transmission +
+		'",\n "carDoors" : "' + doors +
+		'",\n "carFuel" : "' + fuel +
+		'",\n "carRegion" : "' + region +
+		'",\n "carCondition" : "' + condition +
+		'",\n "carPrice" : "' + price + 
+		'"\n}';
+		$.post({
+			url: "http://localhost:8080/rst2/api/cars/",
+			data: jsonObj,
 			contentType: "application/json",
 			success: function(data) {
 				alert("Success");
-			},
-			error: function(xhr, status, error) {
-	            console.log(xhr);
-	            if (xhr == 'undefined' || xhr == undefined) {
-	                alert('undefined');
-	            } else {
-	                alert('object is there');
-	            }
-	            alert(status);
-	            alert(error);
-	        },
-		})
-	})
-})
+			}
+		});
+	});
+});

@@ -6,113 +6,99 @@ import io.swagger.annotations.ApiModelProperty;
 @ApiModel
 public class Car {
 	
-	@ApiModelProperty(required = true)
-	private int id;
-	//@ApiModelProperty(value = "This will show the name of the c", example = "Pesho")
-	//private String name;
-	@ApiModelProperty(value = "This will show the car brand.", example = "Brabus")
-	private String brand;
-	@ApiModelProperty(value = "This will show the model of a car brand.", example = "GLE 850")
-	private String model;
-	@ApiModelProperty(value = "This will show the year of manufactue of the car.", example = "2016")
-	private int yearOfManufacture;
-	@ApiModelProperty(value = "This will show the horse power of the car", example = "850")
-	private int horsePower;
-	@ApiModelProperty(value = "This will show the car transmission.", example = "Automatic")
-	private String transmission;
-	@ApiModelProperty(value = "This will show the number of doors of the car", example = "4")
-	private int doors;
-	@ApiModelProperty(value = "This will show on what type of fuel the car is running on.", example = "diesel")
-	private String fuel;
-	@ApiModelProperty(value = "This will show the region of the car, i.e. where the car is selling from.", example = "Varna")
+	@ApiModelProperty(required = true, value = "This will show the car brand.", example = "Brabus")
+	private String carBrand;
+	@ApiModelProperty(required = true, value = "This will show the model of a car brand.", example = "GLE 850")
+	private String carModel;
+	@ApiModelProperty(required = true, value = "This will show the year of manufactue of the car.", example = "2016")
+	private int carYearOfManufacture;
+	@ApiModelProperty(required = true, value = "This will show the horse power of the car", example = "850")
+	private int carHorsePower;
+	@ApiModelProperty(required = true, value = "This will show the car transmission.", example = "Automatic")
+	private String carTransmission;
+	@ApiModelProperty(required = true, value = "This will show the number of doors of the car", example = "4")
+	private int carDoors;
+	@ApiModelProperty(required = true, value = "This will show on what type of fuel the car is running on.", example = "diesel")
+	private String carFuel;
+	@ApiModelProperty(required = true, value = "This will show the region of the car, i.e. where the car is selling from.", example = "Varna")
 	private String carRegion;
-	@ApiModelProperty(value = "This will show if the car is new or seconhand.", example = "new")
-	private String condition;
-	@ApiModelProperty(value = "This will show the car price in leva.", example = "400000")
-	private int price;
+	@ApiModelProperty(required = true, value = "This will show if the car is new or seconhand.", example = "new")
+	private String carCondition;
+	@ApiModelProperty(required = true, value = "This will show the car price in dollars.", example = "400000")
+	private int carPrice;
 	
-	public Car (int id, String brand, String model, int year, int power, String transmission, 
+	public Car (String brand, String model, int year, int power, String transmission, 
 			int doors, String fuel, String region, String condition, int price) {
-		this.id = id;
-		this.brand = brand;
-		this.model = model;
-		this.yearOfManufacture = year;
-		this.horsePower = power;
-		this.transmission = transmission;
-		this.doors = doors;
-		this.fuel = fuel;
+		this.carBrand = brand;
+		this.carModel = model;
+		this.carYearOfManufacture = year;
+		this.carHorsePower = power;
+		this.carTransmission = transmission;
+		this.carDoors = doors;
+		this.carFuel = fuel;
 		this.carRegion = region;
-		this.condition = condition;
-		this.price = price;
+		this.carCondition = condition;
+		this.carPrice = price;
 	}
 	
-	public Car(int id) {
+	public Car() {
 		super();
-		this.id = id;
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
 	}
 	
 	public String getCarBrand() {
-		return brand;
+		return carBrand;
 	}
 
 	public void setCarBrand(String carBrand) {
-		this.brand = carBrand;
+		this.carBrand = carBrand;
 	}
 	
 	public String getCarModel() {
-		return model;
+		return carModel;
 	}
 
 	public void setCarModel(String carModel) {
-		this.model = carModel;
+		this.carModel = carModel;
 	}
 	
 	public int getCarYearOfManufacture(){
-		return yearOfManufacture;
+		return carYearOfManufacture;
 	}
 	
 	public void setCarYearOfManufacture(int carYearOfManufacture){
-		this.yearOfManufacture = carYearOfManufacture;
+		this.carYearOfManufacture = carYearOfManufacture;
 	}
 	
 	public int getCarHorsePower(){
-		return horsePower;
+		return carHorsePower;
 	}
 	
 	public void setCarHorsePower(int carHorsePower){
-		this.horsePower = carHorsePower;
+		this.carHorsePower = carHorsePower;
 	}
 	
 	public String getCarTransmission() {
-		return transmission;
+		return carTransmission;
 	}
 
 	public void setCarTransmission(String carTransmission) {
-		this.transmission = carTransmission;
+		this.carTransmission = carTransmission;
 	}
 	
 	public int getCarDoors(){
-		return doors;
+		return carDoors;
 	}
 	
 	public void setCarDoors(int carDoors){
-		this.doors = carDoors;
+		this.carDoors = carDoors;
 	}
 	
 	public String getCarFuel(){
-		return fuel;
+		return carFuel;
 	}
 	
 	public void setCarFuel(String carFuel){
-		this.fuel = carFuel;
+		this.carFuel = carFuel;
 	}
 	
 	public String getCarRegion(){
@@ -124,19 +110,19 @@ public class Car {
 	}
 	
 	public String getCarCondition(){
-		return condition;
+		return carCondition;
 	}
 	
 	public void setCarCondition(String carCondition){
-		this.condition = carCondition;
+		this.carCondition = carCondition;
 	}
 	
 	public int getCarPrice(){
-		return price;
+		return carPrice;
 	}
 	
 	public void setCarPrice(int carPrice){
-		this.price = carPrice;
+		this.carPrice = carPrice;
 	}
 
 }

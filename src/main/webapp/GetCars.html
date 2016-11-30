@@ -2,10 +2,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<script
-	src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script type="text/javascript" src="scripts.js"></script>
-<title>Insert title here</title>
+<title>Cars for sale</title>
 </head>
 <body>
 	<br>
@@ -20,8 +23,43 @@
 	
 	<br>
 	
-	<button id="showCars">View Cars</button>
+	<button class="showCars">View Cars</button>
 	<button id="hideCars" disabled>Hide Cars</button>
+	<br><br>
+	Cars Per Page:  <input required placeholder = "Required" type="number" id="perPage" name="perPage">  
+	<br><br>
+	<div class="ui-widget">        
+		Car Brand:  <input type="text" id="b" name="carbrand" placeholder="Optional" >          
+	</div><br>
+	Car Model:  <input type="text" id="m" name="carmodel" placeholder="Optional">          
+	Car Year Of Manufacture:  <input type="number" id="y" name="caryear" placeholder="Optional">         
+	<br><br>
+	Car Horse Power:  <input type="number" id="hp" name="carhp" placeholder="Optional">          
+	Car Transmission:  
+		<select name="transmission" id="t">
+		  <option value=""> Optional </option>
+		  <option value="Automatic">Automatic</option>
+		  <option value="Manual">Manual</option>
+		</select>          
+	Car Doors:  <input type="number" id="d" name="cardoors" min="2" max="7" placeholder="Optional">          
+	Car Fuel:  
+		<select name="carfuel" id="f">
+		  <option value=""> Optional </option>
+		  <option value="Petrol">Petrol</option>
+		  <option value="Diesel">Diesel</option>
+		  <option value="Petrol/Gas">Petrol/Gas</option>
+		  <option value="Hybrid">Hybrid</option>
+		  <option value="Electricity">Electricity</option>
+		</select>          
+	<br><br>
+	Car Region:  <input type="text" id="r" name="carregion" placeholder="Optional">          
+	Car Condition:  
+		<select name="carcondition" id="c" required>
+			<option value=""> Optional </option>
+		  	<option value="New">New</option>
+		  	<option value="Secondhand">Secondhand</option>
+		</select>          
+	Car Price:  <input type="number" id="pr" name="carprice" placeholder="Optional">          
 	<table id="carList" style="width:100%">
 		<tr>
 			<th></th>
@@ -37,6 +75,7 @@
 			<th>Price</th>
 		</tr>
 	</table>
+	<div id="pagination"></div>
 	
 </body>
 </html>

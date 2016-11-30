@@ -21,12 +21,14 @@ buildscript {
   }
 }
 
-
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
 
 // In this section you declare the dependencies for your production and test code
 dependencies {
-	compile group: 'org.slf4j', name: 'slf4j-jdk14', version: '1.7.5'
-	
+	  compile group: 'org.slf4j', name: 'slf4j-jdk14', version: '1.7.5'
+    //compileJava.options.fork = true
+    //compileJava.options.forkOptions.executable = /usr/lib/jvm/jre1.8.0_92
     compile 'javax.ws.rs:javax.ws.rs-api:2.0.1'
     compile 'org.glassfish.jersey.core:jersey-server:2.24'
     compile 'org.glassfish.jersey.media:jersey-media-json-jackson:2.24'
